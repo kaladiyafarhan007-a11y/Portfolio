@@ -1,0 +1,1565 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<meta content="Farhanstic — independent sports designer building posters, matchday graphics, branding and campaigns." name="description">
+<title>Farhanstic — Sports Design</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&amp;family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050506;
+    --bg-surface: #0a0b0e;
+    --panel: #111216;
+    --white: #f8f8f6;
+    --off: #dededb;
+    --muted: #9598a0;
+    --dim: #54565e;
+    --accent: #d4b5ff;
+    --metal-border: rgba(255, 255, 255, 0.12);
+    --metal-border-subtle: rgba(255, 255, 255, 0.06);
+    --max: 1320px;
+    --display: "Poppins", -apple-system, BlinkMacSystemFont, sans-serif;
+    --body: "Roboto", -apple-system, BlinkMacSystemFont, sans-serif;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  
+  html {
+    scroll-behavior: smooth;
+    background: var(--bg);
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Ambient Atmospheric Glows */
+  .ambient-glow {
+    position: fixed;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(140px);
+    z-index: 0;
+  }
+  .ambient-glow-1 {
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(800px, 90vw);
+    height: 440px;
+    background: radial-gradient(ellipse, rgba(170, 140, 255, 0.07), transparent 70%);
+  }
+  .ambient-glow-2 {
+    top: 50%;
+    right: -100px;
+    width: min(650px, 80vw);
+    height: 650px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.025), transparent 70%);
+  }
+
+  a { text-decoration: none; color: inherit; }
+  button { font: inherit; color: inherit; background: transparent; border: none; cursor: pointer; }
+  img { display: block; width: 100%; height: auto; user-select: none; -webkit-user-drag: none; }
+
+  .wrap {
+    width: min(var(--max), calc(100% - 64px));
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Floating Navigation */
+  .nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 100;
+    padding: 16px 0;
+    background: rgba(5, 5, 6, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: padding 0.3s ease;
+  }
+  .nav-inner {
+    width: min(var(--max), calc(100% - 48px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .brand {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--metal-border);
+    background: rgba(20, 22, 28, 0.6);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .brand span { color: #888; margin-left: 2px; font-weight: 400; font-size: 13px; }
+  
+  .nav-links {
+    display: flex;
+    gap: 6px;
+    padding: 4px;
+    background: rgba(16, 18, 22, 0.6);
+    border: 1px solid var(--metal-border-subtle);
+    border-radius: 999px;
+  }
+  .nav-links a {
+    min-height: 34px;
+    padding: 0 14px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    font-family: var(--body);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #a2a4ac;
+    transition: all 0.25s ease;
+  }
+  .nav-links a:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .nav-cta {
+    font-family: var(--body);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--white);
+    padding: 9px 20px;
+    border-radius: 999px;
+    border: 1px solid var(--metal-border);
+    background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+    transition: all 0.25s ease;
+  }
+  .nav-cta:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+    background: linear-gradient(180deg, rgba(255,255,255,0.2), rgba(255,255,255,0.08));
+    transform: translateY(-1px);
+  }
+
+  /* HERO SECTION */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 130px 0 70px;
+    background: 
+      radial-gradient(1000px 520px at 50% 38%, rgba(255,255,255,0.06), transparent 65%),
+      linear-gradient(180deg, #0c0d10 0%, #050506 55%, #08090b 100%);
+  }
+  .hero-grid-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(circle at 50% 45%, black 20%, transparent 75%);
+    pointer-events: none;
+  }
+  .stadium-beam {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.6;
+    filter: blur(50px);
+    mix-blend-mode: screen;
+  }
+  .stadium-beam-left {
+    top: -10%; left: 5%; width: 340px; height: 110%;
+    background: conic-gradient(from 120deg at 0% 0%, rgba(212, 181, 255, 0.18) 0deg, transparent 45deg);
+    transform: rotate(18deg);
+  }
+  .stadium-beam-right {
+    top: -10%; right: 5%; width: 340px; height: 110%;
+    background: conic-gradient(from 220deg at 100% 0%, rgba(180, 160, 255, 0.18) 0deg, transparent 45deg);
+    transform: rotate(-18deg);
+  }
+  
+  .hero-wrap {
+    width: min(var(--max), calc(100% - 48px));
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  .micro {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #a4a6ae;
+    margin-bottom: 24px;
+  }
+  .micro::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+  }
+  .hero-title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(40px, 7.5vw, 110px);
+    line-height: 0.96;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    margin: 0 0 24px;
+    word-break: normal;
+  }
+  .title-chrome {
+    background: linear-gradient(135deg, #ffffff 0%, #eceef2 30%, #8c909b 55%, #f5f6f8 80%, #ffffff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .title-chrome.highlight {
+    background: linear-gradient(135deg, #ffffff 0%, #dfd2ff 35%, #9d7df0 55%, #f1ecff 80%, #ffffff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-copy {
+    max-width: 580px;
+    margin: 0 auto;
+    color: #9ea1a8;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .hero-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 36px;
+  }
+  .hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 30px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--metal-border);
+    backdrop-filter: blur(14px);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--white);
+    transition: all 0.3s var(--ease);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+  .hero-btn .arrow {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.06);
+    transition: transform 0.3s var(--ease);
+  }
+  .hero-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.35);
+    transform: translateY(-2px);
+  }
+  .hero-btn:hover .arrow {
+    transform: translateX(3px) translateY(-2px);
+  }
+
+  /* SECTION PRIMITIVES */
+  section { position: relative; width: 100%; clear: both; }
+  .section { padding: 120px 0; }
+  .section-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 48px;
+    margin-bottom: 60px;
+  }
+  .section-title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(42px, 5.8vw, 92px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin: 0;
+    text-transform: uppercase;
+    background: linear-gradient(180deg, #ffffff 20%, #dedfe4 55%, #767882 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .section-copy {
+    max-width: 440px;
+    color: #92959e;
+    font-size: 15px;
+    line-height: 1.8;
+    margin: 0;
+  }
+  .section-kicker {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #6e7078;
+    margin-bottom: 12px;
+  }
+
+  /* ABOUT SECTION */
+  .about {
+    background: linear-gradient(180deg, #070708 0%, #050506 100%);
+    border-top: 1px solid var(--metal-border-subtle);
+    border-bottom: 1px solid var(--metal-border-subtle);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 68px;
+    align-items: center;
+  }
+  .about-photo {
+    aspect-ratio: 4 / 5;
+    max-height: 560px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #0a0b0d;
+    border: 1px solid var(--metal-border);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+  }
+  .about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .about-copy h3 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(32px, 3.8vw, 58px);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    margin: 0 0 20px;
+    color: #f2f2f0;
+  }
+  .about-copy h3 span { color: #787a82; font-weight: 500; }
+  .about-copy p {
+    font-size: 16px;
+    color: #92959e;
+    max-width: 540px;
+    line-height: 1.85;
+    margin: 0;
+  }
+  .about-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 36px;
+    border-top: 1px solid var(--metal-border-subtle);
+  }
+  .about-list div {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--metal-border-subtle);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #84868e;
+  }
+  .about-list div:nth-child(odd) {
+    border-right: 1px solid var(--metal-border-subtle);
+    padding-right: 20px;
+  }
+  .about-list div:nth-child(even) { padding-left: 20px; }
+
+  /* STATS SECTION */
+  .stats-section {
+    background: linear-gradient(180deg, #07080a 0%, #0a0b0d 50%, #07080a 100%);
+    border-bottom: 1px solid var(--metal-border-subtle);
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-left: 1px solid var(--metal-border-subtle);
+    border-right: 1px solid var(--metal-border-subtle);
+  }
+  .stat {
+    padding: 50px 24px;
+    position: relative;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 60%);
+  }
+  .stat + .stat { border-left: 1px solid var(--metal-border-subtle); }
+  .stat-value {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(42px, 4.4vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    background: linear-gradient(180deg, #ffffff 20%, #d4d6db 55%, #6d6f76 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stat-label {
+    margin-top: 14px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #7b7e86;
+  }
+
+  /* WORK LAB SECTION */
+  .work {
+    background: linear-gradient(180deg, #050506 0%, #08090b 50%, #050506 100%);
+    border-bottom: 1px solid var(--metal-border-subtle);
+    width: 100%;
+    overflow: visible;
+  }
+  .work-tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 34px;
+    gap: 16px;
+  }
+  .filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    background: rgba(16, 18, 22, 0.6);
+    padding: 5px;
+    border-radius: 999px;
+    border: 1px solid var(--metal-border-subtle);
+  }
+  .filter {
+    background: transparent;
+    border: 1px solid transparent;
+    color: #7d8088;
+    padding: 7px 18px;
+    border-radius: 999px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.25s ease;
+  }
+  .filter:hover { color: #fff; }
+  .filter.active {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+
+  /* Guaranteed document flow grid: no height restriction */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    width: 100%;
+    margin-bottom: 48px;
+  }
+  .work-item {
+    aspect-ratio: 4 / 5;
+    border-radius: 12px;
+    background: #0d0e12;
+    border: 1px solid var(--metal-border);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s var(--ease), border-color 0.4s, box-shadow 0.4s;
+  }
+  .work-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    background: #090a0c;
+    transition: transform 0.6s var(--ease);
+  }
+  .work-item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(5, 5, 6, 0.92) 100%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  .work-meta {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 10px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.3s var(--ease);
+  }
+  .work-name {
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 600;
+  }
+  .work-cat {
+    font-size: 9px;
+    color: #9fa1a9;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+  .work-open {
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+  }
+  .work-item:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  }
+  .work-item:hover img { transform: scale(1.03); }
+  .work-item:hover::after { opacity: 1; }
+  .work-item:hover .work-meta { opacity: 1; transform: translateY(0); }
+
+  .work-more {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 20px;
+  }
+  .view-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 48px;
+    padding: 0 28px;
+    border: 1px solid var(--metal-border);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--white);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    transition: all 0.25s var(--ease);
+  }
+  .view-more-btn:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+  }
+
+  /* PROCESS SECTION */
+  .process {
+    background: linear-gradient(180deg, #050506 0%, #07080a 50%, #050506 100%);
+    border-bottom: 1px solid var(--metal-border-subtle);
+    width: 100%;
+    display: block;
+    position: relative;
+    z-index: 2;
+  }
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border: 1px solid var(--metal-border-subtle);
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(14, 15, 18, 0.4);
+  }
+  .process-card {
+    min-height: 360px;
+    padding: 34px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 60%);
+    transition: background 0.3s ease;
+  }
+  .process-card + .process-card { border-left: 1px solid var(--metal-border-subtle); }
+  .process-card:hover { background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 80%); }
+  .process-num {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 0.8;
+    background: linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.15) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .process-card h4 {
+    font-size: 22px;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    margin: 0 0 10px;
+    color: #f2f2f0;
+    font-weight: 700;
+  }
+  .process-card p {
+    font-size: 13.5px;
+    color: #8c8f96;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* REVIEWS SECTION */
+  .reviews {
+    background: linear-gradient(180deg, #050506 0%, #090a0d 60%, #050506 100%);
+    border-bottom: 1px solid var(--metal-border-subtle);
+    width: 100%;
+    display: block;
+    position: relative;
+    z-index: 2;
+  }
+  .reviews-stage {
+    position: relative;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .reviews-word {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 20px;
+    text-align: center;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(70px, 13vw, 200px);
+    letter-spacing: -0.02em;
+    color: rgba(255, 255, 255, 0.02);
+    line-height: 0.85;
+    pointer-events: none;
+    user-select: none;
+  }
+  .review-stack {
+    position: relative;
+    width: min(680px, 94vw);
+    height: 380px;
+    display: grid;
+    place-items: center;
+  }
+  .review-card {
+    position: absolute;
+    width: min(640px, 92vw);
+    min-height: 270px;
+    background: #f5f5f2;
+    color: #121316;
+    border-radius: 22px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+    padding: 32px 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.5s var(--ease), opacity 0.4s ease;
+  }
+  .review-card.back-2 {
+    transform: translate(24px, 36px) scale(0.92);
+    opacity: 0.22;
+    background: #232427;
+    color: #fff;
+    z-index: 1;
+  }
+  .review-card.back-1 {
+    transform: translate(12px, 18px) scale(0.96);
+    opacity: 0.42;
+    background: #36373b;
+    color: #fff;
+    z-index: 2;
+  }
+  .review-card.active {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+    z-index: 3;
+  }
+  .review-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .review-person { display: flex; align-items: center; gap: 12px; }
+  .avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1b1c1f, #5a5c63);
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .review-name { font-size: 14px; font-weight: 700; }
+  .review-role { font-size: 11px; color: #72747a; margin-top: 2px; }
+  .stars { color: #16171a; font-size: 13px; }
+  .review-copy {
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 20px 0;
+  }
+  .review-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: #72747a;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .review-controls {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+  }
+  .review-controls button {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--metal-border);
+    background: rgba(18, 19, 23, 0.8);
+    backdrop-filter: blur(12px);
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-size: 15px;
+    transition: all 0.25s ease;
+  }
+  .review-controls button:hover {
+    background: #ffffff;
+    color: #101114;
+  }
+
+  /* CONNECT SECTION */
+  .connect {
+    padding: 130px 0 100px;
+    background: linear-gradient(180deg, #070708 0%, #030304 100%);
+    border-bottom: 1px solid var(--metal-border-subtle);
+    width: 100%;
+    display: block;
+    position: relative;
+    z-index: 2;
+  }
+  .connect-title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(48px, 7.5vw, 120px);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    margin: 0;
+    background: linear-gradient(180deg, #ffffff 25%, #e4e6ea 55%, #6a6c74 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .connect-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 48px;
+    align-items: flex-end;
+    margin-top: 50px;
+    border-top: 1px solid var(--metal-border-subtle);
+    padding-top: 36px;
+  }
+  .connect-copy {
+    max-width: 500px;
+    color: #8c8f98;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0 0 28px;
+  }
+  .contact-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--white);
+    font-weight: 500;
+  }
+  .contact-cta .arrow {
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--metal-border);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: rgba(255,255,255,0.04);
+  }
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .contact-link {
+    width: 50px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: #dcdedf;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--metal-border);
+    backdrop-filter: blur(12px);
+    transition: all 0.25s var(--ease);
+  }
+  .contact-link svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .contact-link:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 32px 0 40px;
+    color: #60626a;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    background: #030304;
+    width: 100%;
+    display: block;
+    position: relative;
+    z-index: 2;
+  }
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+
+  /* MODAL */
+  .modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 3, 4, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .modal.open { display: flex; }
+  .modal-inner {
+    width: min(1080px, 95vw);
+    max-height: 88vh;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    background: #0d0e12;
+    border: 1px solid var(--metal-border);
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+  }
+  .modal-media {
+    background: #050506;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    min-height: 420px;
+  }
+  .modal-media img {
+    max-height: 72vh;
+    object-fit: contain;
+    border-radius: 6px;
+  }
+  .modal-copy {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-left: 1px solid var(--metal-border-subtle);
+  }
+  .modal-copy h3 {
+    font-family: var(--display);
+    font-size: 34px;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin: 10px 0 16px;
+    color: #fff;
+  }
+  .modal-copy p {
+    color: #92959e;
+    font-size: 15px;
+    line-height: 1.8;
+    margin: 0;
+  }
+  .modal-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    border: 1px solid var(--metal-border);
+    background: rgba(14, 15, 18, 0.8);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 22px;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    z-index: 10;
+  }
+
+  /* RESPONSIVE DESIGN */
+  @media (max-width: 1024px) {
+    .section { padding: 90px 0; }
+    .wrap { width: min(var(--max), calc(100% - 44px)); }
+    .nav-inner { width: min(var(--max), calc(100% - 44px)); }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-photo { max-height: 440px; }
+    .work-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .process-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-card { min-height: 280px; }
+    .process-card:nth-child(odd) { border-left: none; }
+    .process-card:nth-child(n+3) { border-top: 1px solid var(--metal-border-subtle); }
+  }
+
+  @media (max-width: 768px) {
+    .wrap { width: min(var(--max), calc(100% - 36px)); }
+    .nav-inner { width: min(var(--max), calc(100% - 36px)); }
+    .section-intro { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 36px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { padding: 36px 18px; }
+    .stat:nth-child(3) { border-left: none; border-top: 1px solid var(--metal-border-subtle); }
+    .stat:nth-child(4) { border-top: 1px solid var(--metal-border-subtle); }
+    .connect-row { grid-template-columns: 1fr; gap: 36px; }
+  }
+
+  /* MOBILE SPECIFIC OVERHAUL (< 640px) */
+  @media (max-width: 640px) {
+    .wrap { width: calc(100% - 30px); }
+    .nav-inner { width: calc(100% - 30px); gap: 8px; }
+    .nav { padding: 10px 0; }
+    .brand { font-size: 13px; padding: 6px 12px; }
+    .nav-links { gap: 2px; padding: 2px; }
+    .nav-links a { font-size: 9px; padding: 0 10px; min-height: 30px; }
+    .nav-cta { font-size: 9px; padding: 7px 14px; }
+
+    .hero { min-height: auto; padding: 110px 0 60px; }
+    .hero-title {
+      font-size: clamp(34px, 10vw, 48px);
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    .hero-copy { font-size: 14px; line-height: 1.65; }
+    .hero-btn { padding: 11px 24px; font-size: 10px; }
+
+    .section { padding: 70px 0; }
+    .section-title { font-size: clamp(34px, 10vw, 48px); }
+    .section-copy { font-size: 13.5px; }
+
+    .about-photo { max-height: 340px; border-radius: 14px; }
+    .about-copy h3 { font-size: clamp(26px, 7.5vw, 36px); margin-bottom: 14px; }
+    .about-copy p { font-size: 14px; }
+    .about-list { margin-top: 24px; }
+    .about-list div { font-size: 9.5px; padding: 12px 0; }
+
+    .stat { padding: 26px 14px; }
+    .stat-value { font-size: clamp(32px, 9vw, 46px); }
+    .stat-label { font-size: 9.5px; margin-top: 8px; }
+
+    .work-tools { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 22px; }
+    .filters { width: 100%; overflow-x: auto; flex-wrap: nowrap; scrollbar-width: none; padding: 4px; }
+    .filters::-webkit-scrollbar { display: none; }
+    .filter { font-size: 9.5px; padding: 6px 14px; white-space: nowrap; }
+
+    /* Clean 2-column mobile grid with balanced gap */
+    .work-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 32px; }
+    .work-item { border-radius: 8px; }
+    .work-meta { left: 8px; right: 8px; bottom: 8px; }
+    .work-name { font-size: 9px; }
+    .work-cat { font-size: 7.5px; }
+    .work-open { width: 22px; height: 22px; font-size: 10px; }
+
+    .process-grid { grid-template-columns: 1fr; border-radius: 12px; }
+    .process-card { min-height: auto; padding: 24px 18px; border-left: none !important; border-top: 1px solid var(--metal-border-subtle); }
+    .process-card:first-child { border-top: none; }
+    .process-num { font-size: 48px; margin-bottom: 8px; }
+    .process-card h4 { font-size: 19px; }
+    .process-card p { font-size: 13px; }
+
+    .reviews-stage { min-height: 420px; }
+    .review-stack { width: 100%; height: 320px; }
+    .review-card { width: calc(100% - 10px); min-height: 230px; padding: 20px 18px; border-radius: 16px; }
+    .review-copy { font-size: 15px; margin: 14px 0; }
+    .review-controls { bottom: 8px; }
+    .review-controls button { width: 40px; height: 40px; }
+
+    .connect { padding: 70px 0 50px; }
+    .connect-title { font-size: clamp(34px, 10vw, 52px); }
+    .connect-row { margin-top: 28px; padding-top: 20px; }
+    .connect-copy { font-size: 14px; margin-bottom: 20px; }
+    .contact-links { gap: 10px; }
+    .contact-link { width: 44px; height: 44px; }
+
+    .modal { padding: 12px; }
+    .modal-inner { grid-template-columns: 1fr; max-height: 85vh; overflow-y: auto; border-radius: 14px; }
+    .modal-media { min-height: 220px; padding: 16px; }
+    .modal-media img { max-height: 45vh; }
+    .modal-copy { padding: 20px 16px; border-left: none; border-top: 1px solid var(--metal-border-subtle); }
+    .modal-copy h3 { font-size: 24px; }
+
+    .footer-row { flex-direction: column; align-items: flex-start; gap: 8px; font-size: 9.5px; }
+  }
+</style>
+</head>
+<body>
+<div class="ambient-glow ambient-glow-1"></div>
+<div class="ambient-glow ambient-glow-2"></div>
+
+<!-- NAVIGATION -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">Farhanstic<span class="">®</span></a>
+    <nav aria-label="Primary navigation" class="nav-links">
+      <a href="#about" class="">About</a>
+      <a href="#work" class="">Work</a>
+      <a href="#process" class="">Process</a>
+      <a href="#reviews" class="">Reviews</a>
+    </nav>
+    <a class="nav-cta" href="#connect">Contact</a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-grid-pattern"></div>
+    <div class="stadium-beam stadium-beam-left"></div>
+    <div class="stadium-beam stadium-beam-right"></div>
+
+    <div class="hero-wrap">
+      <div class="micro">FARHANSTIC / SPORTS DESIGN</div>
+      <h1 class="hero-title"><span class="title-chrome">TURN THE MATCH</span><br><span class="title-chrome highlight">INTO A MOMENTS.</span></h1>
+      <p class="hero-copy">I turn match moments, player stories and club energy into visuals made to stop the scroll.</p>
+      <div class="hero-actions">
+        <a class="hero-btn" href="#work">EXPLORE THE WORK <span class="arrow">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="about section" id="about">
+    <div class="wrap">
+      <div class="section-intro">
+        <div><h2 class="section-title">BEHIND<br>THE WORK.</h2></div>
+        <p class="section-copy">A personal sports-design practice focused on bold concepts, clean composition and visuals that carry the feeling of the game.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-photo">
+          <img alt="Farhan Kaladiya portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhDcUsDRxj-enIMHN14_Vr4d2i1kXIDqihT5cuM59AwCS5uNmUPOlAPeYHUR9hfTqM0HYIT0Ul0fB7L3S-WM1YydgX7uMcPdUe3AGyLT3wI2u2i44xfXQbIfZQCG1ykMWN3CrIbK04HmIs_NH7_cwbu3zYOe5-x5PZdGdoFxyqfBLgktzp7CdWkJXiuxs_eu0qSjwn2K8wQYIO46Oqn5_n07UWrM-UJ3vByQNG9pO_Wn_34zaeRnGrp5VKvxwNdPFNIaRIgkbFQ9EX1Yo">
+        </div>
+        <div class="about-copy">
+          <h3 class="">DESIGN IS THE<br><span class="">ENERGY AROUND</span><br>THE GAME.</h3>
+          <p class="">I work with clubs, athletes, sports brands and creative teams to build posters, matchday visuals, social graphics and campaign systems that feel clear, modern and full of character.</p>
+          <div class="about-list">
+            <div class="">Sports / Football / Cricket</div>
+            <div class="">Remote / Worldwide</div>
+            <div class="">Posters / Matchday</div>
+            <div class="">Branding / Social</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS SECTION -->
+  <section aria-label="Numbers" class="stats-section">
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat"><div class="stat-value">120</div><div class="stat-label">Projects completed</div></div>
+        <div class="stat"><div class="stat-value">3+</div><div class="stat-label">Years creating</div></div>
+        <div class="stat"><div class="stat-value">15+</div><div class="stat-label">Clients worldwide</div></div>
+        <div class="stat"><div class="stat-value">4.7</div><div class="stat-label">Average rating</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK LAB SECTION -->
+  <section class="work section" id="work">
+    <div class="wrap">
+      <div class="section-intro">
+        <div><h2 class="section-title">WORK LAB.</h2></div>
+        <p class="section-copy">Every piece below is part of the same idea: make the sport feel bigger, sharper and more memorable.</p>
+      </div>
+
+      <div class="work-tools">
+        <div aria-label="Work categories" class="filters" role="tablist">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="football">Football</button>
+          <button class="filter" data-filter="cricket">Cricket</button>
+          <button class="filter" data-filter="branding">Branding</button>
+          <button class="filter" data-filter="social">Social</button>
+        </div>
+      </div>
+
+      <!-- Complete Work Grid -->
+      <div class="work-grid" id="workGrid">
+        <!-- 8 Initial Featured Posters -->
+        <article class="work-item" data-cat="cricket" data-copy="Swing Bhuvi matchday sports artwork by Farhanstic." data-title="Swing Bhuvi" style="display: block;">
+          <img alt="Swing Bhuvi" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOkYbVaNzvCczbJuqz2fw-1AJ_E-kNg6IQcdj0u0hS5aveTju61cgra8ffEbmW3ShTJJpzLuI8o191DTniw2rcg3YKgJl3WENsVJ8dBnWU4qxdlWjw3nbQJKnmbv78qli41rsSIgtK8HF4uGCKbPOMeF8_KHl765a8vQgA6WsevmrFmdesVo4t-Kp9xBhs4DCsZXN2Os0SMh2xOcq6-qsRlJw4K3VEBgxqm_qFSeiNE_OD92oblnxnv3HRlFc9WtQawfs">
+          <div class="work-meta"><div><div class="work-name">Swing Bhuvi</div><div class="work-cat">Cricket / Matchday</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="cricket" data-copy="LSG vs MI split-rivalry matchday poster by Farhanstic." data-title="LSG vs MI — Match 47" style="display: block;">
+          <img alt="LSG vs MI — Match 47" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzLuSRLwnnc2wcEU-k9XetmUwjze81ybJwYAXyr6TirtuBFmJPYoLmTQx25HLdi-HbFFofD4EkH3V7lBy-Ift3nzrLyhBY0ZHZCgilqG_Swr1GANo9gRnU3QXF164BkIbAGFP9yvM_6nfV9IQqUhdjV_T7GTV9HtXsy2YBSVvFOnQPevlfzLd0bbYP1bhCmBUzap5_PE2Ug3lx6VK51ZnZEr__ZrF8xm3g1uG-do3UwmQB5wk7nnXg9XyShq6_XeehSHc">
+          <div class="work-meta"><div><div class="work-name">LSG vs MI — Match 47</div><div class="work-cat">Cricket / Matchday Split</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="cricket" data-copy="Captain Gill celestial victory artwork by Farhanstic." data-title="Captain Gill" style="display: block;">
+          <img alt="Captain Gill" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtVhW1bf50H66m_KYgNYjpLBUkUU_6k_m-BKm4lDuJt7faOjrW7DW_ZmREexBQjwjQPW5R_6JHKn8DEVP_DAlDbjCDIVpFDunYXGhdM46Q1qav1jhspHqBuCCznLCCs-ky0XBYn-MN5KSeFIGRPHEeVWQagzHhGKAqNPWgA_9rOIp1ACM3AMq4PX4GF58kpdwG2aFammXky3Qhsny-kuwtlW5h94AYLSoIwL05Gw91XAOmi5Ok3GhNNRpXatP_nFclQz8">
+          <div class="work-meta"><div><div class="work-name">Captain Gill</div><div class="work-cat">Cricket / Player Concept</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="cricket" data-copy="RCB vs CSK sword clash matchday visual by Farhanstic." data-title="RCB vs CSK — Match 11" style="display: block;">
+          <img alt="RCB vs CSK — Match 11" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-PjtSsJnJNBKzXmJ616exAoDzyh-lo3br1enq8IkB8J56n84HjfC-u_qdXqdclsMEjWfMwjnOG45RTDzHQQ5fy9yO3olOMP_Y-TxlO9ywYAnB3SZbroL0I7JKNZUp_qzF3gA0iCvoHNImP1fvsC980DW0t8vGNEJqGb7VLvx0ggUfKF4ES_MZaux8hr34HqVY0bnkbnatHHrhh1ruXWSHOxcOyc87RpRDHaDYewNTwGuysRwke8MJ5eBxtwUANyGUERE">
+          <div class="work-meta"><div><div class="work-name">RCB vs CSK — Match 11</div><div class="work-cat">Cricket / Rivalry Clash</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="cricket" data-copy="Official Playing XI matchday lineup graphics by Farhanstic." data-title="Playing XI — RCB vs CSK" style="display: block;">
+          <img alt="Playing XI — RCB vs CSK" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpNFYlXyDLBwQHgrM_ckgN5if4T2l1Jbe1rN06ekhUORjg-65iiOJ5_ndNrz-bpNZUs0IgWRE7SLFztpEC42ACS5tBTqrwjVs_2ALJMA9n6USpa8rG3m8IJRyhQbVDGngSt9b671k6ZQEpFFKMB2K0gujn56PO-tAW7DSm7HZd6jeTN0_a8W8vQW52RPoPmfYvFKVHDhwIWFCYU9yewAVwp6i7lPce1ZCyZv_x3njNOpir-ElPKm8FkzsDAysFGYd4_JU">
+          <div class="work-meta"><div><div class="work-name">Playing XI — RCB vs CSK</div><div class="work-cat">Cricket / Team Lineup</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="football" data-copy="SFL x UBS Swiss Football League leaderboard artwork by Farhanstic." data-title="SFL x UBS — Minutes Played" style="display: block;">
+          <img alt="SFL x UBS — Minutes Played" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb_A75t_bCLlVjK0uRnEFOSitkaITNv5x9viCmlVWcQSK-iNdURdoWv1YzBFSA-7x_7RHji_djIaY4jPCoE41TrVl4irkE667VjeSauI9Mw7_EwY1bHJKK73tSaG75f170cDXkv6BDXxZmCC-ka3NLuzdZpefzUKYvp1KlyFuamOj9YuUObszqrf7tY3W2ajWKkZeZiuoK8OSaU8DvxYYl_y1BllIkljLNRe8VPRPgpXUfZt_2-d_lbW9maEXa3_8ji7w">
+          <div class="work-meta"><div><div class="work-name">SFL x UBS — Minutes Played</div><div class="work-cat">Football / Infographic</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="cricket" data-copy="Devdutt Padikkal Team India test match feature by Farhanstic." data-title="Devdutt Padikkal — Test Debut" style="display: block;">
+          <img alt="Devdutt Padikkal — Test Debut" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfaWXpGm5fykUlkfR1-ZpkThPLf_ynBPBBpq-Pu9pLG55edkwPXzLSXjDbbWblSwABb6IoAQ_ICf1CpGGk9WHh9V62AHmMsK6pBkCsKVsxgfV4UmlJ_JCG0rVKlgUKWioEDQjg2VhUZR-3dxO4fjSfXowCT-p-u-bZrLNMqO6rb5w8cJWbRYMxETX0kGKHsMACbExxY5ekcqrpa8-cK_LpgFxflqLK04gvMFuooenYB5_uAeGs7rnsgrqHLeZV-3CNnLk">
+          <div class="work-meta"><div><div class="work-name">Devdutt Padikkal — Test Debut</div><div class="work-cat">Cricket / Player Feature</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="cricket social" data-copy="The Magic Kid cinematic conceptual artwork by Farhanstic." data-title="The Magic Kid" style="display: block;">
+          <img alt="The Magic Kid" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb5GUBbtSWJnACHdIdIzIr7EvH946lHMf5D7QaqwOYPE-t3CgFqVlUgbRyN8IAiUhkJBDnzoiVkXG1EV7mxfz7ze7fMIvPmSSjPFrw7NBSvO7Q-l11bNztKzni_NWRP9EwtK0O3OcDFRZxYmP4JifMInU-Wdnc8yaR06O6U_4akNqCpAOGMHQV8a5f3DinuO3PeKSDiyP60piWodM4vZclDTiqMKEXwlin5ddD4aWBIznE13mxyfHeA9Zyzpl9j2xCw4A">
+          <div class="work-meta"><div><div class="work-name">The Magic Kid</div><div class="work-cat">Artwork / Concept Poster</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <!-- 17 Secondary / Expanded Posters (Hidden initially) -->
+        <article class="work-item" data-cat="cricket" data-copy="Surya Kumar Yadav T20 Captain artwork by Farhanstic." data-title="Surya Kumar Yadav — T20 Captain" style="display: none;">
+          <img alt="Surya Kumar Yadav — T20 Captain" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCwWRz3rrnkf5Jn3ZDQvXxgtTlACgRBjBWVVxi2WXlqVmQtuLTB-KKbO0X2dNvrt_bGWsyThSgbruCZ7siyEbagSBl11ZttEQrnn166g60Uy4CZWPhfni1KBrDawbahHEe9OQhub16WfFr2FzkLKZ-Zf1J-hPOauFjZvbLQn9MLoxcfn877X60edDlfoMiftMcarsQjVhYjSy1UcP9Q0N2IzWq-GAGUFBgBxGjWyIcgZssTlX8XhaetuU4d46ab5e5ckU">
+          <div class="work-meta"><div><div class="work-name">Surya Kumar Yadav</div><div class="work-cat">Cricket / Player Feature</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="football" data-copy="Silvan Widmer Swiss National Team poster by Farhanstic." data-title="Silvan Widmer" style="display: none;">
+          <img alt="Silvan Widmer" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANnGDjrY29Bn-YQJshefDpYYPI1bq8TTybM2WMf8AzPvLg1hay3cnOaO9WshGAZF-2ReMPw4M8x0bYyVNMpFlrr6xY4XQYu05XYAOcTAS7q7w_ki19Rp30QUAc7rZSsIk0qMQRkuO9RmMOMgcFbHVM7UravS9gyYIm2o8tOgY3Wd3LlzbWrkQPiM8R88KGcTS-fG53YKykLC3XTPmBJI--Obb9d--GoF0ltQ0nRlvyZlxcRhP16IwSWDMHWTV8cOXl9iA">
+          <div class="work-meta"><div><div class="work-name">Silvan Widmer</div><div class="work-cat">Football / International</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="cricket" data-copy="Sanju Samson 'Believe That' emotional victory poster by Farhanstic." data-title="Believe That — Sanju Samson" style="display: none;">
+          <img alt="Believe That — Sanju Samson" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwa93LmsRDSzyYhKrl-0gxN4VIWvZHy007oELXpnb4Hs0ZsGYMS87DnydMOEm45hBD9yjFF6Jcw1MosQXdNLhpDpF-S5oW7QYLVg1H_-b7zc5XR6kfqqi8Qs_2J3LAkgY-Wc_kefofLpKh3DBaunX4eU2beMxg0fT5y1NUO5Vjv8Fa5EdLDcO3drS7Yzdvjzu5hvHEy7NNYeMOEp8NPxvl0mz8S2LBdzXbnyvbS8uxROyENGly3d2VmCECqaLq8hCbGXQ">
+          <div class="work-meta"><div><div class="work-name">Believe That</div><div class="work-cat">Cricket / Player Story</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="cricket" data-copy="Shubman Gill World Cup 2027 sand trophy concept by Farhanstic." data-title="Shubman Gill — Beach WC 27" style="display: none;">
+          <img alt="Shubman Gill — Beach WC 27" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZK5nPhU3ywoKlxf-6uaLVP35VCTwLCz_A0Wnzfsg7d1hEuxlPUwvlcyJ450_ZaGsXKBIeUXCHDitlYa0gB-VdwdasGoUiriKv90i4dJ5PnM4qmTlFpLzs8TOdccwLeRXvEfTp9JfjDcJvtmNg7X_mPVGjSCW-EycZO3zHnIn21UfXvZHHIDrEUyYS1iSNulusnoHC0fq7VW7kDqNjnIPvd6PwaonpmlIqYnTMI3S8lJlDnn-88en-ihmQgtgU-ddAvV0">
+          <div class="work-meta"><div><div class="work-name">Shubman Gill</div><div class="work-cat">Cricket / Concept Poster</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="cricket" data-copy="Virat Kohli RCB 'Loyalty is the most important' artwork by Farhanstic." data-title="Loyalty — Virat Kohli" style="display: none;">
+          <img alt="Loyalty — Virat Kohli" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuQrg714sPdOdVACO-lAjMnPSQu_kCIt5RLYcdd3fBRqlzNLmfAdbfXWgK_30s6K_GXoypW-T5ggrlBVIEoab7xcgbOKA2lGP_InbOSsZImehP7rH-sA5kS2tvZnHFIwD5nV3eT_G_UrUXXC8ud95_TiIc3zN4rXB4e-DJBPACCln-b9QRhrbVXDDncdoZFJiigcjlRJoRvsp46AKznLeffGZBlre-02dviJ23nD3uMYJMhiDDzKqJ1oMg0z7RjPYAAm8">
+          <div class="work-meta"><div><div class="work-name">Loyalty — Virat Kohli</div><div class="work-cat">Cricket / Club Icon</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="cricket" data-copy="MI vs KKR IPL matchday controller artwork by Farhanstic." data-title="MI vs KKR — Matchday Console" style="display: none;">
+          <img alt="MI vs KKR — Matchday Console" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAv9iYjRdfm8wmoD1ygWoQCoDllAZnYo3yhdAxsGWQQADwJb8zL6-_Rgz9YhMhQiSaYWxFDlZlG8WZ2XhiEhkuBQhxsVgokebSFlwWufA7jgrzIGl0pbtQPCM5TEbRREA1gkEnPpgoCed_2IzfJq3JkR-PZRUarKd6S8D5eEql_aA3ATXcLCkO0NTcUMtAVq1ClwPkHgXVARdq_yVfS4bkKbekpe5oqWW1t6ZGUUGVnsZ0_idTPy13g_-ta_e0yUqlrggE">
+          <div class="work-meta"><div><div class="work-name">MI vs KKR</div><div class="work-cat">Cricket / Matchday Gaming</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="cricket" data-copy="RCB vs SRH IPL Match 01 captains showdown by Farhanstic." data-title="RCB vs SRH — Match 01" style="display: none;">
+          <img alt="RCB vs SRH — Match 01" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmv7Lj1EYt1nK3BsigI2j0-DQBCutOXazTpnK9_ZYevchWSinFDXHSPgnebyON6qglHFuotDuFoYH0nQ4hiKWqR32RN7SZLzsaFQcf-Xn38S0ruQYDBMlXyWc427Q8uYCtdXPeWmrP-i4nINWC3Sqy-gGFAxcns6obQhDBpb-hf-KWcOCOodWKSC7NTj2q22RPJnhnOsdOF2Q2wPulul_uUHcihtnNcnLIIkqTXtjNYiBhMYdq2Hmrg0Ju4kN5Vss1z2I">
+          <div class="work-meta"><div><div class="work-name">RCB vs SRH</div><div class="work-cat">Cricket / Captains Clash</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="cricket branding" data-copy="Lagaan tribute cricket ball and wheat field poster by Farhanstic." data-title="Lagaan — Once Upon a Time in India" style="display: none;">
+          <img alt="Lagaan — Once Upon a Time in India" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADLLDasVUPF3QSpjLZfyU0Wu6R6gBsZh3dbJ9LPZ8m9sRw6bJpnZh3apOpRbmanx_-yv4MEnuB657roorRk6rKENSYVE71QOiTW2_JMopZWwewF5MwEJbWPPubUBxjlusmI_Oe62LTuQ2fgLFn7xozuud0oXj1y2w4zep97xPfepXsEV26ouU_estN7iGgCCekba8e0avyCj2vlEIK4IQbZ-i2tDlM4lzXnbAF3_l9d91J5TxpuZz492pOzxe3V61ZYZI">
+          <div class="work-meta"><div><div class="work-name">Lagaan</div><div class="work-cat">Cricket / Concept Art</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="cricket" data-copy="Virat Kohli classic Team India blue portrait artwork by Farhanstic." data-title="Virat Kohli — Team India Blue" style="display: none;">
+          <img alt="Virat Kohli — Team India Blue" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJ08_xbdgeZMZnpofsHVcpaC_gZ2aen_B-5EsJ5FY2CQgt-BrViSnXokGMuwRRNZ5ng33_693ORWc8AjUHz3hGV3sCfXGjeTLD5nzgL5ktQFMt2cC1KPOCorpkpA2QrFAaRlY9HQ-BfG2ioysN8k-oMC6EV05vO97NnQP9BuT8f5LWyqnGjpU8tNrA5ImG6-kKm4kh13DfCC5YV3z6bqAi9MoKENbnUeoFa5oLutqdjliXv6oc84h_8cPSRbnqSHcoek4">
+          <div class="work-meta"><div><div class="work-name">Virat Kohli</div><div class="work-cat">Cricket / Player Feature</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="football" data-copy="Lutfi Dalipi SFL Best Player of the Week portrait poster by Farhanstic." data-title="Lutfi Dalipi — Week 7 Best Player" style="display: none;">
+          <img alt="Lutfi Dalipi — Week 7 Best Player" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUACXTb6awadUYDzdsCXLU_vJtU1K9JJTKHS5sANXUBRfrq-rtJADpe1bcuCc6QDyRJeM5NPj0y5WYG4cST-06BHcct8BpNYkaiTNRwWC4LQVkj_quw5eU5PuQeO0zWdBrFWfZP7Vy2GIS_6OfHY9IbLT8gxF8n--qEeV2OvQxgGRLxpfl3r2XhhOn9ih-GoYF_cg4gBv_JLxB7g68RR8DMXlnsdVjqH94--o0JN80VjxtorUdA1LpdSyAajCgS5US5H0">
+          <div class="work-meta"><div><div class="work-name">Lutfi Dalipi</div><div class="work-cat">Football / Spotlight</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="cricket branding" data-copy="Indian Cricket Team x Spiderman crossover jersey concept by Farhanstic." data-title="Team India x Spiderman Jersey" style="display: none;">
+          <img alt="Team India x Spiderman Jersey" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvPlplaXdqyuV1jzDdh7fRp1fWqygPeLyhUZaQnVOOYTQkhxRCnlU5U2Iol1psZ-UKJ2aLp3hAUmVIe9fMbltchLc2JIAc7aGbWJ3wyHfujEZrzUTEdsSpKAEE7ONIz_-f52xskjjgq_f3PaHEqJScA-Dn4Q22x5f5rSEeodJGhNNF57Sm4nTdINN4o555qSvmq3RTl7JYfuIdHuhgFMvb7wN2DRbySu6xBRJk5H7d_uh2n1lTqdkbpfQv2iGcQySTiGY">
+          <div class="work-meta"><div><div class="work-name">India x Spiderman</div><div class="work-cat">Branding / Kit Concept</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="cricket social" data-copy="Hardik Pandya street art spray-can campaign artwork by Farhanstic." data-title="Which Team? — Hardik Pandya" style="display: none;">
+          <img alt="Which Team? — Hardik Pandya" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLuLvoyb9RUH2j2gD-ktaZ49G6pjc7bxhfdm9yCkJPQiZcuHega2Esx_l83SrzmEHqTL4zB22z-7kLLQol7dKi8kcmA0qD1r7hE2SHHHxIc7SgDWzoph1-1JbdUThuGecYQk158rnVweo2DAh4JFskbBsRCxRXtaELHBQm49b9TD6FWafPjkY2UyCxtZSnVdi98nJwRUTIwBB7vRIGbnC4zepMpkmxaYw53r3vTdKY0EnNOtO2tuypXtDFt57AT9GBXEU">
+          <div class="work-meta"><div><div class="work-name">Which Team?</div><div class="work-cat">Cricket / Campaign</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="football social" data-copy="Football 4 Change Academy official matchday First 11 lineup sheet by Farhanstic." data-title="First 11 &amp; Subs — Match Lineup" style="display: none;">
+          <img alt="First 11 &amp; Subs — Match Lineup" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBupfMzA9VB7Gkk37KvaVwMKxw8V3ICXOINeE_orrSrv2chQHEZ8hqfd33k11Lumwf2g0YNsxJjTB1fREAaEcoxaIHmGsMQw1VqlAnd67SYcWsBOYNCC8VfHYkI7qnb5PI4UgaGSOvFOrdKVoT3Izdtoqjxzz12D75RwME_kOem7QkbdJ5Hnk4hXj7gojHkZ00I9ITpPm9Y35lVAzwntJ1qUVHFNIigbtqWURLtNDBddeCgTl5eEMcsN2JgQBuailvF4jo">
+          <div class="work-meta"><div><div class="work-name">First 11 Lineup</div><div class="work-cat">Football / Team Sheet</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="football" data-copy="Neymar Jr forest meadow enchanted ball control poster by Farhanstic." data-title="Neymar Jr — Natural Flow" style="display: none;">
+          <img alt="Neymar Jr — Natural Flow" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDBVT4JLJsZbt97JhQKC5MUGXVjl87Wh5gqk0koYLq-w5NzP4SszlOUt6UOCIIHLrsyVbg057VEGoV0-RZFBGt35cbNbegaJX3TeQENXNf76OxwusNgMHHu6lRUu64JPYlIU0u-OnONgGf5Mz9IJ8EYwkrUVetoa5U8LHathwa1Sd7GwROLz4fO0C3z7tmZIEVmYtuVAqkPw8E62gMLtIavTq-Y2u-pwef3QKq5X4iVhMYyChbd8U95Epa0F_x-vfuVco">
+          <div class="work-meta"><div><div class="work-name">Neymar Jr</div><div class="work-cat">Football / Player Art</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="football" data-copy="Cristiano Ronaldo Portugal stadium sunset GOAT conceptual artwork by Farhanstic." data-title="GOAT — Cristiano Ronaldo" style="display: none;">
+          <img alt="GOAT — Cristiano Ronaldo" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHSCDoJ7HTTkBtw5cxleSqlbdKS3JZ5NJ4sTXyaV8otpctR2iKDaFShPc7xIr8uIvE4B_6ByklL1lwbHLWkGy9N6xR4EbNyUmOjrDSG4Xe4fqr-f0RLcNARwqcA3YXBpTF_Be4epUXSPLD-u-dsgW26WlwkrQn_v8HR4HRjRtsOnld9yi4RYeV68o4w57FwEY8E4mZE3x5Q384azt7bRf6-VfrFazbTya2kENT5zc9gD2QBNbLogsNA-e_YhL69_qZCoY">
+          <div class="work-meta"><div><div class="work-name">GOAT — Ronaldo</div><div class="work-cat">Football / Legend Poster</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="cricket" data-copy="Virat Kohli King &amp; Crown golden tribute artwork by Farhanstic." data-title="King &amp; Crown — Virat Kohli" style="display: none;">
+          <img alt="King &amp; Crown — Virat Kohli" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnmG9mk26MVERZumzWpFHk_P64PDyu5V_2Psw9JoP9VPnKa04WW04xyswq_rDTSn50doZRsJrfplpOtcZSdI7WxcUctBx1BGK92HqlVv32CUe92qXqzYS7CYEaj7S80UCLy0AOzS6E7hM5uOXYUz7bVg-EF9GkU8F6hdzFmmgczkzuq2wGvXi7koPOnB0SL_F0-1Pfm2k53mKpj7rOKgYhaSK7t0RcV0VNqZTM9ugYQtENCJsZRPOvO0BMOtNbk-n-dCo">
+          <div class="work-meta"><div><div class="work-name">King &amp; Crown</div><div class="work-cat">Cricket / Tribute</div></div><div class="work-open">↗</div></div>
+        </article>
+
+        <article class="work-item" data-cat="cricket branding" data-copy="Ishan Kishan urban street graffiti spray art poster by Farhanstic." data-title="Ishan Kishan — Street Vibe" style="display: none;">
+          <img alt="Ishan Kishan — Street Vibe" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcx5hHTS5ayItpSStid3mu6fUu6kgdFGUYAdGxfOn6sYLWzfq_AVL1JIUtg4_qKq8i1pNV45Vr-cKbm550azI1BMCRkarJpAMmQI1PpVLMVChiowokJ58JpJmWkLmPJzlaUVKDt8ReHm_6ubxUd_2qJjr7q4kfbN3R8xi4OnpPgh-bGsag4C7Ou1MGajcTnapOMOJezwg4dzbvL_LtLMqCrY2x4jMzaX5bZS4Pkq-90OgTf347WV-nqK-SLefV2zKm3Lc">
+          <div class="work-meta"><div><div class="work-name">Ishan Kishan</div><div class="work-cat">Cricket / Urban Series</div></div><div class="work-open">↗</div></div>
+        </article>
+      </div>
+
+      <div class="work-more">
+        <button aria-expanded="false" class="view-more-btn" id="viewMoreWork" type="button" style="display: inline-flex;">
+          <span class="">VIEW MORE WORK</span><span class="view-more-arrow">↘</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS SECTION -->
+  <section class="process section" id="process">
+    <div class="wrap">
+      <div class="section-intro">
+        <div><h2 class="section-title">A GOOD<br>PROCESS.</h2></div>
+        <p class="section-copy">Simple enough to move quickly. Detailed enough to keep the final work sharp. Each project follows the same five-stage rhythm.</p>
+      </div>
+      <div class="process-grid">
+        <article class="process-card"><div class="process-num">01</div><div><h4 class="">DISCOVER</h4><p class="">Understand the club, athlete, audience and objective before the first visual move.</p></div></article>
+        <article class="process-card"><div class="process-num">02</div><div><h4 class="">DIRECTION</h4><p class="">Find the strongest visual route and remove the ideas that do not earn their space.</p></div></article>
+        <article class="process-card"><div class="process-num">03</div><div><h4 class="">CREATE</h4><p class="">Build the core artwork, typography, image treatment and supporting system.</p></div></article>
+        <article class="process-card"><div class="process-num">04</div><div><h4 class="">REFINE</h4><p class="">Polish hierarchy, detail, balance and the final rhythm across every format.</p></div></article>
+        <article class="process-card"><div class="process-num">05</div><div><h4 class="">DELIVER</h4><p class="">Package everything cleanly so it can go straight into social, print or matchday use.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS SECTION -->
+  <section class="reviews section" id="reviews">
+    <div class="wrap">
+      <div class="section-intro">
+        <div><h2 class="section-title">CLIENT<br>NOTES.</h2></div>
+        <p class="section-copy">Real words from people I’ve worked with across sport, media and creative projects.</p>
+      </div>
+      <div class="reviews-stage">
+        <div class="reviews-word">REVIEWS</div>
+        <div class="review-stack" id="reviewStack"><article class="review-card active">
+        <div class="review-top">
+          <div class="review-person">
+            <div class="avatar">AM</div>
+            <div>
+              <div class="review-name">Alex Morgan</div>
+              <div class="review-role">Club Marketing · UK</div>
+            </div>
+          </div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="review-copy">“He understood the brief quickly and gave the campaign a visual identity that felt made for the club.”</div>
+        <div class="review-footer">
+          <span class="">03 / 05</span>
+        </div>
+      </article><article class="review-card back-1">
+        <div class="review-top">
+          <div class="review-person">
+            <div class="avatar">SM</div>
+            <div>
+              <div class="review-name">Sarah Mitchell</div>
+              <div class="review-role">Brand Manager · Australia</div>
+            </div>
+          </div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="review-copy">“The work is bold without feeling messy. Really easy to brief, revise and take live.”</div>
+        <div class="review-footer">
+          <span class="">02 / 05</span>
+        </div>
+      </article><article class="review-card back-2">
+        <div class="review-top">
+          <div class="review-person">
+            <div class="avatar">RK</div>
+            <div>
+              <div class="review-name">Rohan Khanna</div>
+              <div class="review-role">Sports Brand · India</div>
+            </div>
+          </div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="review-copy">“Farhan brings a clear point of view to every poster. The final work feels energetic, clean and very usable.”</div>
+        <div class="review-footer">
+          <span class="">01 / 05</span>
+        </div>
+      </article></div>
+        <div class="review-controls">
+          <button aria-label="Previous review" id="prevReview" type="button" class="">←</button>
+          <button aria-label="Next review" id="nextReview" type="button" class="">→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONNECT SECTION -->
+  <section class="connect" id="connect">
+    <div class="wrap">
+      <h2 class="connect-title">GOT A GAME<br>WORTH SHOWING?</h2>
+      <div class="connect-row">
+        <div>
+          <p class="connect-copy">Send the brief, the idea or even just the problem. I’ll take it from there and build the visual direction around it.</p>
+          <a class="contact-cta" href="mailto:kaladiyafarhan007@gmail.com">Start a conversation <span class="arrow">↗</span></a>
+        </div>
+        <div aria-label="Contact links" class="contact-links">
+          <a aria-label="Call Farhan" class="contact-link" href="tel:+919624760413" title="Call">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7.2 3.5l2.3-.8c.8-.3 1.6.1 1.9.9l1.1 2.7c.2.6.1 1.2-.4 1.6l-1.6 1.3c1 2.1 2.3 3.6 4.4 4.5l1.3-1.6c.4-.5 1-.6 1.6-.4l2.7 1.1c.8.3 1.2 1.1.9 1.9l-.8 2.3c-.3.8-1.1 1.3-1.9 1.2C10.2 17.3 6.7 13.8 5.6 6.5c-.1-.8.4-1.6 1.2-1.9Z"></path></svg>
+          </a>
+          <a aria-label="Email Farhan" class="contact-link" href="mailto:kaladiyafarhan007@gmail.com" title="Email">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3.5 6.5h17v11h-17z"></path><path d="m4 7 8 6 8-6"></path></svg>
+          </a>
+          <a aria-label="WhatsApp Farhan" class="contact-link" href="https://wa.me/919624760413" rel="noopener" target="_blank" title="WhatsApp">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 11.6a8.4 8.4 0 0 1-12.4 7.3L4 20l1.1-3.4A8.4 8.4 0 1 1 20 11.6Z"></path><path d="M9 8.5c.3-.3.7-.3.9.1l.8 1.7c.2.4.1.7-.2.9l-.7.5c.5 1 1.3 1.7 2.3 2.2l.5-.7c.2-.3.5-.4.9-.2l1.7.8c.4.2.4.6.1.9l-.5.6c-.4.5-1 .7-1.6.5-3.1-1-5.1-3-6.1-6.1-.2-.6 0-1.2.5-1.6L9 8.5Z"></path></svg>
+          </a>
+          <a aria-label="Instagram Farhanstic" class="contact-link" href="https://www.instagram.com/farhanstic/" rel="noopener" target="_blank" title="Instagram">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><rect height="16" rx="4" width="16" x="4" y="4"></rect><circle cx="12" cy="12" r="3.5"></circle><circle cx="17.3" cy="6.8" r="1"></circle></svg>
+          </a>
+          <a aria-label="X / Twitter" class="contact-link" href="https://x.com/farhanstic" rel="noopener" target="_blank" title="X / Twitter">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 4.5 19 19.5"></path><path d="M19 4.5 5 19.5"></path><path d="M8.2 4.5h3.1l4.5 6.1 4.2 0H16.8l-4.6-6.1Z"></path><path d="M15.8 19.5h-3.1l-4.5-6.1H4l4.2 0 4.6 6.1Z"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap footer-row">
+    <span class="">FARHANSTIC®</span>
+    <span class="">© <span id="year" class="">2026</span> All visual rights reserved.</span>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div aria-hidden="true" class="modal" id="modal">
+  <button aria-label="Close preview" class="modal-close" id="modalClose">×</button>
+  <div class="modal-inner">
+    <div class="modal-media"><img alt="Preview" id="modalImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgcng9IjgiIGZpbGw9IiNlOGVhZWQiLz48cGF0aCBkPSJNMTcwIDEzMCBsMzAgNDAgbDIwLTE1IGw0MCA1NSBIMTQweiIgZmlsbD0iI2JkYzFjNiIvPjxjaXJjbGUgY3g9IjI1MCIgY3k9IjEyMCIgcj0iMTgiIGZpbGw9IiNiZGMxYzYiLz48L3N2Zz4="></div>
+    <div class="modal-copy">
+      <div>
+        <div class="section-kicker" id="modalMeta">Category</div>
+        <h3 id="modalTitle" class="">Title</h3>
+        <p id="modalText" class="">Description</p>
+      </div>
+      <a class="contact-cta" href="#connect" id="modalCta">Start a similar project <span class="arrow">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Dynamic Work Filtering & View More Toggle
+  const workItems = Array.from(document.querySelectorAll('.work-item'));
+  let workExpanded = false;
+  const viewMoreWork = document.getElementById('viewMoreWork');
+  
+  function renderWork() {
+    const filter = document.querySelector('.filter.active')?.dataset.filter || 'all';
+    let shownCount = 0;
+    
+    workItems.forEach((item) => {
+      const matches = filter === 'all' || item.dataset.cat.includes(filter);
+      const shouldShow = matches && (workExpanded || shownCount < 8);
+      
+      item.style.display = shouldShow ? 'block' : 'none';
+      if (matches && !workExpanded) {
+        shownCount++;
+      }
+    });
+
+    if (viewMoreWork) {
+      const matchingCount = workItems.filter(i => filter === 'all' || i.dataset.cat.includes(filter)).length;
+      viewMoreWork.style.display = matchingCount > 8 ? 'inline-flex' : 'none';
+      viewMoreWork.setAttribute('aria-expanded', String(workExpanded));
+      const label = viewMoreWork.querySelector('span');
+      if (label) label.textContent = workExpanded ? 'SHOW LESS' : 'VIEW MORE WORK';
+      const arrow = viewMoreWork.querySelector('.view-more-arrow');
+      if (arrow) arrow.textContent = workExpanded ? '↖' : '↘';
+    }
+  }
+
+  document.querySelectorAll('.filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderWork();
+    });
+  });
+
+  viewMoreWork?.addEventListener('click', () => {
+    workExpanded = !workExpanded;
+    renderWork();
+  });
+
+  renderWork();
+
+  // Reviews Carousel
+  const reviews = [
+    ['Rohan Khanna', 'Sports Brand · India', 'RK', 'Farhan brings a clear point of view to every poster. The final work feels energetic, clean and very usable.'],
+    ['Sarah Mitchell', 'Brand Manager · Australia', 'SM', 'The work is bold without feeling messy. Really easy to brief, revise and take live.'],
+    ['Alex Morgan', 'Club Marketing · UK', 'AM', 'He understood the brief quickly and gave the campaign a visual identity that felt made for the club.'],
+    ['Luca Ferreira', 'Content Lead · Portugal', 'LF', 'Strong sense of composition, great image choices and very quick communication throughout the project.'],
+    ['Daniel Weber', 'Football Media · Germany', 'DW', 'The player announcement series had a consistent style and still gave every post its own character.']
+  ];
+  let reviewIndex = 0;
+  const stack = document.getElementById('reviewStack');
+  
+  function renderReviews() {
+    if (!stack) return;
+    stack.innerHTML = '';
+    [2, 1, 0].forEach((offset, slot) => {
+      const i = (reviewIndex + offset) % reviews.length;
+      const r = reviews[i];
+      const card = document.createElement('article');
+      card.className = 'review-card ' + (slot === 0 ? 'active' : slot === 1 ? 'back-1' : 'back-2');
+      card.innerHTML = `
+        <div class="review-top">
+          <div class="review-person">
+            <div class="avatar">${r[2]}</div>
+            <div>
+              <div class="review-name">${r[0]}</div>
+              <div class="review-role">${r[1]}</div>
+            </div>
+          </div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="review-copy">“${r[3]}”</div>
+        <div class="review-footer">
+          <span>${String(i + 1).padStart(2, '0')} / 05</span>
+        </div>
+      `;
+      stack.appendChild(card);
+    });
+  }
+
+  document.getElementById('prevReview')?.addEventListener('click', () => {
+    reviewIndex = (reviewIndex - 1 + reviews.length) % reviews.length;
+    renderReviews();
+  });
+  document.getElementById('nextReview')?.addEventListener('click', () => {
+    reviewIndex = (reviewIndex + 1) % reviews.length;
+    renderReviews();
+  });
+  renderReviews();
+
+  // Modal Lightbox
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modalImg');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalText = document.getElementById('modalText');
+  const modalMeta = document.getElementById('modalMeta');
+
+  document.querySelectorAll('.work-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('img');
+      modalImg.src = img.src;
+      modalImg.alt = img.alt;
+      modalTitle.textContent = item.dataset.title;
+      modalText.textContent = item.dataset.copy;
+      modalMeta.textContent = item.dataset.cat;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+    });
+  });
+
+  const closeModal = () => {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+  };
+  document.getElementById('modalClose')?.addEventListener('click', closeModal);
+  modal?.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+  document.getElementById('modalCta')?.addEventListener('click', closeModal);
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+
+
+</body></html>
